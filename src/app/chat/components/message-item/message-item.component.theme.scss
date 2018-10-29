@@ -1,0 +1,22 @@
+@mixin message-item-theme($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+
+  app-message-item {
+    &.contact .bubble {
+      color: rgba(0, 0, 0, .87);
+      background-color: #e0e0e0;
+      &::before {
+        background: #e0e0e0;
+      }
+    }
+    &.me .bubble {
+      background: mat-color($primary, 400);
+      color: #fff;
+      &::before {
+        background: mat-color($primary, 400);
+      }
+    }
+  }
+} 

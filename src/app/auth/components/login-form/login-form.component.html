@@ -1,0 +1,42 @@
+<div class="logo">
+  <img src="assets/images/logo.svg">
+</div>
+
+<div class="title">LOGIN</div>
+
+<form name="loginForm" [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate>
+
+  <mat-form-field>
+      <input matInput autocomplete="off" placeholder="Username" formControlName="username">
+      <mat-error *ngIf="loginFormErrors.username.required">
+        Username is required
+      </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+      <input matInput autocomplete="off" type="password" placeholder="Password" formControlName="password">
+      <mat-error *ngIf="loginFormErrors.password.required">
+          Password is required
+      </mat-error>
+  </mat-form-field>
+
+  <div class="remember-forgot-password" fxLayout="row"
+       fxLayoutAlign="space-between center">
+      <mat-checkbox class="remember-me" aria-label="Remember Me">
+          Remember Me
+      </mat-checkbox>
+
+      <a class="forgot-password" [routerLink]="'/forgot-password'">
+          Forgot Password?
+      </a>
+  </div>
+
+  <button mat-raised-button color="accent" type="submit" class="submit-button" aria-label="LOG IN"
+          [disabled]="loginForm.invalid">
+      LOGIN
+  </button>
+
+</form>
+
+
+<!-- <mat-card>Simple card</mat-card> -->

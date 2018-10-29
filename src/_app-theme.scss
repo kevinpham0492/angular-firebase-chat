@@ -1,0 +1,18 @@
+@import '~@angular/material/theming';
+
+@import 'app/chat/containers/chat-page/chat-page.component.theme';
+@import 'app/chat/containers/contact-page/contact-page.component.theme';
+@import 'app/chat/containers/conversation-page/conversation-page.component.theme';
+@import 'app/chat/components/message-item/message-item.component.theme';
+
+// Styles for the docs app that are based on the current theme.
+@mixin app-theme($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+
+  @include chat-page-theme($theme);
+  @include contact-page-theme($theme);
+  @include conversation-page-theme($theme);
+  @include message-item-theme($theme);
+}

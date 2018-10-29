@@ -1,0 +1,10 @@
+# TEAM
+
+  <name> -- <role> -- <twitter>
+
+# THANKS
+
+# TECHNOLOGY COLOPHON
+
+  HTML5, CSS3
+  Angular6, TypeScript, Ng CLI

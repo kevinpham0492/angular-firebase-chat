@@ -1,0 +1,50 @@
+@import 'src/styles/mixin';
+.logo {
+  width: 98px;
+  margin: auto;
+}
+
+.title {
+  font-size: 20px;
+  margin: 16px 0 32px 0;
+  text-transform: uppercase;
+}
+
+form {
+  width: 100%;
+  text-align: left;
+  mat-form-field {
+    width: 100%;
+  }
+  mat-checkbox {
+    margin: 0;
+  }
+  .remember-forgot-password {
+    font-size: 13px;
+    margin-top: 8px;
+    .remember-me {
+      margin-bottom: 16px
+    }
+    .forgot-password {
+      font-size: 13px;
+      font-weight: 500;
+      margin-bottom: 16px
+    }
+  }
+  .submit-button {
+    width: 220px;
+    margin: 16px auto;
+    display: block;
+  }
+}
+
+@include media-breakpoint('xs') {
+  .logo {
+    width: 68px;
+  }
+  form {
+    .submit-button {
+      width: 100%;
+    }
+  }
+}

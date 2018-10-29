@@ -1,0 +1,5 @@
+<img *ngIf="!me" [src]="message.user.photoURL" class="avatar" alt="Josefina" />
+<div class="bubble">
+  <div class="message">{{message.content.message}}</div>
+  <div *ngIf="lastItemOfGroup" class="time secondary-text">{{message.createdAt | date:'h:mm d/M'}}</div>
+</div>

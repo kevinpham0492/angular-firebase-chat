@@ -1,0 +1,35 @@
+<div fxFlexFill fxLayout="column">
+  <mat-toolbar color="primary" class="mat-elevation-z6">
+    <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="8px">
+      <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="8px">
+        <span>Messages</span>
+      </div>
+      <div>
+        <button mat-icon-button [matMenuTriggerFor]="appMenu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+
+        <mat-menu #appMenu="matMenu">
+          <button mat-menu-item>Settings</button>
+          <button mat-menu-item>Help</button>
+          <button mat-menu-item (click)="onLogout()">Logout</button>
+        </mat-menu>
+      </div>
+
+    </mat-toolbar-row>
+  </mat-toolbar>
+
+  <mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #snav mode="over" fixedTopGap="56">
+      <mat-nav-list>
+        side nav
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <div fxFlexFill fxLayout="column" fxLayoutAlign="center center">
+        <button mat-button color="primary" [routerLink]="[ '/chats', 'conversations', 'CGILIaonDQOyegunK3tI' ]">Go to chat</button>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

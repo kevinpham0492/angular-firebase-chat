@@ -1,0 +1,185 @@
+<div fxFlexFill fxLayout="column">
+  <mat-toolbar color="primary" class="mat-elevation-z6">
+    <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="8px">
+      <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="8px">
+        <button mat-icon-button routerLink="/chats">
+          <mat-icon>arrow_back</mat-icon>
+        </button>
+        <span>{{(conversationDetail$ | async)?.title}}</span>
+      </div>
+      <div>
+        <button mat-icon-button [matMenuTriggerFor]="appMenu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+
+        <mat-menu #appMenu="matMenu">
+          <button mat-menu-item >Edit title</button>
+          <button mat-menu-item >Change background</button>
+          <button mat-menu-item >Members</button>
+          <button mat-menu-item (click)="onCopyLinkToConversationClicked()">Copy link to conversation</button>
+        </mat-menu>
+      </div>
+    </mat-toolbar-row>
+  </mat-toolbar>
+
+  <mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #snav mode="over" fixedTopGap="56">
+      <mat-nav-list>
+        side nav
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+
+      <div fxFlexFill fxLayout="column">
+
+        <div class="loading-wrapper" *ngIf="loading">
+          <mat-spinner color="primary" diameter="60" strokeWidth="3"></mat-spinner>
+        </div>
+
+        <div class="chat-messages">
+
+          <ng-container *ngFor="let group of messagesGroup$ | async as messagesGroup;">
+            <ng-container *ngFor="let msg of group; let index = index;">
+              <app-message-item [me]="msg.uid === user.uid" [message]="msg" [firstItemOfGroup]="index === 0"
+                [lastItemOfGroup]="index === group.length - 1">
+              </app-message-item>
+            </ng-container>
+          </ng-container>
+
+        </div>
+
+        <div class="chat-footer">
+
+          <form #replyForm="ngForm" (ngSubmit)="reply()" fxFlex class="reply-form" fxLayout="row" fxLayoutAlign="space-between center">
+            <div fxFlex="1 1 0" class="input-message">
+              <textarea class="mat-body-1" #replyInput rows="1" autosize maxheight="72" name="messageText" [(ngModel)]="messageText"
+                placeholder="Type message"></textarea>
+            </div>
+            <button mat-mini-fab color="primary" class="mat-elevation-z0" [disabled]="!messageText" type="submit" aria-label="Send message">
+              <mat-icon>send</mat-icon>
+            </button>
+
+          </form>
+        </div>
+
+      </div>
+
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
+
+<!-- 
+<div class="page chat-page">
+  <div class="page-header">
+    <mat-toolbar color="primary" class="mat-elevation-z6">
+      <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="8px">
+        <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="8px">
+          <button mat-icon-button routerLink="/chats">
+            <mat-icon>arrow_back</mat-icon>
+          </button>
+          <span>{{(channelDetail$ | async)?.title}}</span>
+        </div>
+        <button mat-icon-button>
+          <mat-icon>more_vert</mat-icon>
+        </button>
+      </mat-toolbar-row>
+    </mat-toolbar>
+  </div>
+
+  <div class="page-content">
+
+    <div fxFlexFill fxLayout="column">
+
+      <div class="chat-messages">
+
+        <ng-container *ngFor="let group of messagesGroup$ | async as messagesGroup;">
+          <ng-container *ngFor="let msg of group; let index = index;">
+            <app-message-item [me]="msg.uid === user.uid" [message]="msg" [firstItemOfGroup]="index === 0"
+              [lastItemOfGroup]="index === group.length - 1">
+            </app-message-item>
+          </ng-container>
+        </ng-container>
+
+      </div>
+    </div>
+
+  </div>
+
+  <div class="page-footer fixed">
+
+    <div class="chat-footer">
+      <form #replyForm="ngForm" (ngSubmit)="reply()" class="reply-form">
+
+        <div style="position: relative;">
+          <textarea #replyInput rows="1" name="messageText" (focus)="onFocusToInput()" (blur)="onBlurInput()"
+            [(ngModel)]="messageText" placeholder="Type message"></textarea>
+          <button mat-icon-button [disabled]="!messageText" type="submit" aria-label="Send message">
+            <mat-icon>send</mat-icon>
+          </button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<!-- 
+<div fxFlexFill fxLayout="column">
+
+  <mat-toolbar color="primary" class="mat-elevation-z6">
+    <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="8px">
+      <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="8px">
+        <button mat-icon-button routerLink="/chats">
+          <mat-icon>arrow_back</mat-icon>
+        </button>
+        <span>{{(conversation$ | async)?.title}}</span>
+      </div>
+      <button mat-icon-button>
+        <mat-icon>more_vert</mat-icon>
+      </button>
+    </mat-toolbar-row>
+  </mat-toolbar>
+
+  <mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #snav mode="over" fixedTopGap="56">
+      <mat-nav-list>
+        side nav
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <div fxFlexFill fxLayout="column">
+
+        <div class="chat-messages" appPerfectScrollbar>
+
+          <ng-container *ngFor="let group of messagesGroup$ | async as messagesGroup;">
+            <ng-container *ngFor="let msg of group; let index = index;">
+              <app-message-item [me]="msg.uid === user.uid" [message]="msg" [firstItemOfGroup]="index === 0"
+                [lastItemOfGroup]="index === group.length - 1">
+              </app-message-item>
+            </ng-container>
+          </ng-container>
+
+        </div>
+
+        <div class="chat-footer" fxLayout="row" fxLayoutAlign="center center">
+
+          <form #replyForm="ngForm" (ngSubmit)="reply()" fxFlex class="reply-form" fxLayout="row" fxLayoutAlign="start center">
+
+            <div fxFlex="100%" fxLayout="row" fxLayoutAlign="space-between center">
+              <mat-form-field fxFlex floatLabel="never">
+                <textarea matInput #replyInput rows="1" name="messageText" [(ngModel)]="messageText" placeholder="Type message"></textarea>
+              </mat-form-field>
+              <button mat-icon-button [disabled]="!messageText" type="submit" aria-label="Send message">
+                <mat-icon>send</mat-icon>
+              </button>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div> -->

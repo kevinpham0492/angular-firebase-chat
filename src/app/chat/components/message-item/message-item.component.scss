@@ -1,0 +1,127 @@
+$border-radius: 16px;
+.avatar {
+  width: 40px;
+  min-width: 40px;
+  height: 40px;
+  line-height: 40px;
+  margin: 0 8px 0 0;
+  border-radius: 50%;
+  font-size: 17px;
+  font-weight: 600;
+  text-align: center;
+  z-index: 3;
+}
+
+.secondary-text {
+  color: rgba(0, 0, 0, .54);
+}
+
+:host {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 0 16px 4px;
+  .avatar {
+    position: absolute;
+    left: -32px;
+    margin: 0;
+  }
+  .bubble {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    max-width: 100%;
+    border-radius: $border-radius;
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: -10px;
+      height: 12px;
+      width: 12px;
+      display: none;
+    }
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0px;
+      right: -20px;
+      height: 20px;
+      width: 20px;
+      background: #F5F5F6;
+      border-radius: 50%;
+      display: none;
+    }
+    .message {
+      white-space: pre-wrap;
+      padding: 0 12px;
+      border-radius: 20px;
+      min-width: 50px;
+    }
+    .time {
+      display: flex;
+      position: absolute;
+      width: 100%;
+      font-size: 11px;
+      margin-top: 8px;
+      top: 100%;
+      left: 0;
+      white-space: nowrap;
+    }
+  }
+  &.contact {
+    &.first-of-group .bubble {
+      border-top-left-radius: 0;
+    }
+    .bubble {
+      &::before {
+        left: -10px;
+      }
+      &::after {
+        left: -20px;
+      }
+    }
+    +.me {
+      padding-top: 20px;
+      margin-top: 20px;
+    }
+  }
+  &.me {
+    padding-left: 40px;
+    .bubble {
+      margin-left: auto;
+      &::before {
+        right: -10px;
+      }
+      &::after {
+        right: -20px;
+      }
+      .time {
+        justify-content: flex-end;
+        right: 0;
+        margin-right: 12px;
+      }
+    }
+    &.first-of-group .bubble {
+      border-top-right-radius: 0;
+    }
+    &+.contact {
+      padding-top: 20px;
+      margin-top: 20px;
+    }
+  }
+  &.first-of-group {
+    padding-top: 20px;
+    margin-top: 20px;
+    .bubble {
+      &::before,
+      &::after {
+        display: block;
+      }
+    }
+  }
+}

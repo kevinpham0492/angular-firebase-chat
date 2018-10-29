@@ -1,0 +1,23 @@
+<div id="login-page" fxFlexFill fxLayout="column" fxLayoutAlign="center center">
+  <div class="loading-wrapper" *ngIf="loading$ | async" fxLayout="column" fxLayoutAlign="center center">
+    <mat-spinner color="primary" diameter="60" strokeWidth="3"></mat-spinner>
+    <div class="message">Please wait</div>
+  </div>
+  <div class="login-panel" fxLayout="column" fxLayoutAlign="center center">
+    <div class="heading">Chat with friends & family.</div>
+    <div class="heading">Meet new people online.</div>
+
+    <div class="logo">
+      <img src="assets/images/logo.svg">
+    </div>
+
+    <button mat-raised-button (click)="onLoginWithGoogle()" color="primary" class="btn-login google mat-elevation-z0">
+      Login with google
+    </button>
+
+    <button mat-raised-button color="primary" class="btn-login facebook mat-elevation-z0">
+      Login with facebook
+    </button>
+
+  </div>
+</div>

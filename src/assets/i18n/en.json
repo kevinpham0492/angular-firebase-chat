@@ -1,0 +1,12 @@
+{
+  "app.title": "Angular NgRx Material Starter",
+  "auth.forgotPassword.title": "Forgot Password",
+  "auth": {
+    "login": {
+      "title": "Login"
+    }
+  },
+  "home": {
+    "title": "Home"
+  }
+}

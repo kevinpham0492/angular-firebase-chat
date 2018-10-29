@@ -1,0 +1,65 @@
+@import '~@angular/material/theming';
+@import 'src/styles/mixin';
+// Default styles
+#login-page {
+  padding: 32px;
+  .login-panel {
+    height: 100%;
+    .logo {
+      width: 50%;
+      margin: 50px 0;
+    }
+    .heading {
+      font-size: 26px;
+      line-height: 32px;
+      margin-bottom: 20px;
+      font-weight: 200;
+    }
+    .btn-login {
+      width: 86%;
+      margin-bottom: 20px;
+      border-radius: 20px;
+      padding-top: 4px;
+      padding-bottom: 4px;
+      text-transform: uppercase;
+      font-weight: 200;
+      letter-spacing: 1px;
+      &.facebook {
+        background-image: linear-gradient(to right, #1a4398, #2a50a4, #385db0, #456abc, #5278c8);
+      }
+      &.google {
+        background: #DD4B39;
+      }
+    }
+  }
+  app-login-form {
+    display: block;
+    width: 384px;
+    max-width: 384px;
+    padding: 32px;
+    text-align: center;
+  }
+}
+
+// Screen and (max-width: 599px)
+@include media-breakpoint('xs') {
+  #login-page {
+    padding: 16px;
+    app-login-form {
+      width: 100%;
+      max-width: 100%;
+      padding: 16px;
+    }
+  }
+}
+
+// Screen and (min-width: 600px)
+@include media-breakpoint('gt-xs') {
+  #login-page {
+    background: url('/assets/images/backgrounds/dark-material-bg.jpg') no-repeat;
+    background-size: cover;
+    app-login-form {
+      @include mat-elevation(4);
+    }
+  }
+}

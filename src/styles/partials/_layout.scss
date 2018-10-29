@@ -1,0 +1,48 @@
+@import 'styles/mixins/_breakpoints';
+$header-height: 54px;
+mat-toolbar {
+  z-index: 999;
+}
+
+.sidenav-container {
+  flex: 1;
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  .page-header {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    z-index: 9999;
+  }
+  .page-footer {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 9999;
+  }
+}
+
+// Screen and (max-width: 599px)
+@include media-breakpoint('xs') {
+  .page {
+    .page-header {}
+  }
+  app-chat-page {
+    .mat-toolbar-multiple-rows {
+      min-height: $header-height;
+    }
+    .mat-toolbar-row,
+    .mat-toolbar-single-row {
+      padding: 0;
+      min-height: $header-height;
+      height: $header-height;
+    }
+  }
+}
